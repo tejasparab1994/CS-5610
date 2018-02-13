@@ -2,10 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import classnames from 'classnames';
 
-
+// Attribution: Changed my react logic of hw03 in order to accomodate transferring control to elixir
+//              through the approach suggested by Prof. in the email conversation with him on Saturday
 // Attribution: Completed the tic-tac-toe tutorial on https://reactjs.org/tutorial/tutorial.html
 // Attribution: Completed the course: https://www.udemy.com/react-js-and-redux-mastering-web-apps/learn/v4/overview
-//and may have used the ideas learnt from the courses.
+//and have used the ideas learnt from the courses.
 export default function run_demo(root, channel) {
   ReactDOM.render(<Game channel={channel}/>, root);
 }
@@ -68,14 +69,15 @@ class Game extends React.Component {
         count={this.state.count}
         locked={this.state.locked}
         checkMatch = {this.checkMatch}
-        />
+      />
     );
   }
 
   checkMatch(id, currentSquare, flipped, count, locked){
-
+    // to avoid clicking a third square when two already selected
     if(!locked && currentSquare == null) {
       this.channel.push("squareClick", {
+        // passing the state information to channel as payload
         id: id,
         currentSquare: this.state.currentSquare,
         flipped: flipped,
@@ -84,6 +86,9 @@ class Game extends React.Component {
         prevSquareid: this.state.prevSquareid,
         matches: this.state.matches,
       }).receive("ok", this.gotView.bind(this))
+      // handling the timeout changes on getting a new view
+      // which was previously done in react itself through setState
+      // in the checkMatch function
         .receive("done", this.setTo.bind(this));
       }
     }
@@ -114,7 +119,7 @@ class Game extends React.Component {
 
     return (
       <div className="Game container-fluid">
-        <div>
+        <div className = "Buttons">
           <button className = "btn btn-danger" onClick={()=>this.reset()}>{reset}</button>
           <p className = "score"><b> Score:</b> {this.state.count}</p>
           <p className = "matched"><b> Matches:</b>{this.state.matches}</p>

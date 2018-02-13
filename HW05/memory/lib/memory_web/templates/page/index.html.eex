@@ -4,10 +4,10 @@
     <div class="col-lg-8">
       <div class="form-group">
         <%= form_for @conn, "/game", [as: :param], fn f -> %>
-        <%= label(f, :user, "Your game Name") %>
+        <%= label(f, :user, "Your Game Name") %>
         <%= text_input f, :game, class: "form-control" %>
         <br>
-        <%= submit "Log in", class: "btn btn-primary"  %>
+        <%= submit "Join The Game", class: "btn btn-success"  %>
         <% end %>
       </div>
     </div>
