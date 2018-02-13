@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col">
+    <h2 id="index-page"> Login to Game</h2>
+    <div class="col-lg-8">
+      <div class="form-group">
+        <%= form_for @conn, "/game", [as: :param], fn f -> %>
+        <%= label(f, :user, "Your game Name") %>
+        <%= text_input f, :game, class: "form-control" %>
+        <br>
+        <%= submit "Log in", class: "btn btn-primary"  %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

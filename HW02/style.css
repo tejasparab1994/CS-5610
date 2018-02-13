@@ -1,0 +1,61 @@
+#top {
+  text-align: center;
+  background: #35424a;
+  color: #ffffff;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  border-bottom: #e8491d 3px solid;
+}
+
+body {
+  background: #f4f4f4;
+}
+
+#wrap{
+  display: flex;
+  justify-content: center;
+}
+
+#appendPara{
+  font-family: sans-serif;
+}
+
+.button{
+  background-color: #3C6BE7;
+  color: #FFFFFF;
+  padding: 20px 40px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.left{
+  width: 33.33%;
+  float: left;
+}
+
+.right{
+  width: 66.66%;
+  float: right;
+}
+
+.beer{
+  display: none;
+}
+
+.third{
+  display: none;
+}
+
+.loremPara{
+  display: block;
+}
+
+li{
+  padding: 20px 0px 20px 0px;
+  font-size: 20px;
+  font-family: sans-serif;
+
+}
