@@ -1,0 +1,44 @@
+<div class="form-group">
+  <%= link "Your Tasks", to: page_path(@conn, :feed) %>
+  <strong>|</strong>
+  <%= link "All users", to: user_path(@conn, :index) %>
+</div>
+
+
+<h2>All Tasks</h2>
+
+<div class="form-group">
+
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Body</th>
+      <th>Completed</th>
+      <th>Assigned to</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for task <- @tasks do %>
+    <tr>
+      <td><%= task.title %></td>
+      <td width="30%"><%= task.body %></td>
+      <td><%= task.completed %></td>
+      <td><%= task.user.name %> (<strong>ID:</strong> <%=task.user.id%>)</td>
+      <td class="text-right" width ="30%">
+        <span><%= link "Show", to: task_path(@conn, :show, task), class: "btn btn-default btn-xs" %></span>
+        <%= if @current_user.name == task.user.name do %>
+          <span><%= link "Edit", to: task_path(@conn, :edit, task), class: "btn btn-default btn-xs" %></span>
+          <span><%= link "Delete", to: task_path(@conn, :delete, task), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+        <% end %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Task", to: task_path(@conn, :new) %></span>
