@@ -18,5 +18,12 @@ defmodule Tasktracker.Social.Task do
     task
     |> cast(attrs, [:title, :body, :completed, :assigned_id, :time_taken])
     |> validate_required([:title, :body, :completed, :assigned_id, :time_taken])
+    |> validate_change(:time_taken, fn :time_taken, f ->
+      if rem(f, 15) == 0 do
+        []
+      else
+        [time_taken: "Invalid input, not a multiple of 15"]
+      end
+    end)
   end
 end
