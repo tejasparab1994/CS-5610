@@ -8,9 +8,9 @@
   <div class="col">
     <div class="card bg-light mb-3">
       <div class="card-block">
-        <h4 class="card-title"><%= task.title %></h6>
-        <p class="card-text"><%= task.body %></p>
-        <p class= "card-text">Completed: <strong><%= task.completed %></strong></p>
+        <h4 class="card-header">Title: <%= task.title %></h4>
+        <div class="card-body">Description: <%= task.body %></div>
+        <div class= "card-body">Completed: <strong><%= task.completed %></strong></div>
         <!--maybe button -->
         </div>
         <div class= "card-block, text-right">

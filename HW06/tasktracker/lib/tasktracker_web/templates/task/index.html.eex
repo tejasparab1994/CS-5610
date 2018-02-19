@@ -7,38 +7,29 @@
 
 <h2>All Tasks</h2>
 
-<div class="form-group">
+<%= Enum.map @tasks, fn task -> %>
+<div class="row">
+  <div class="col">
+    <div class="card bg-light mb-3">
+      <div class="card-block">
+        <div class="card-header">
+            Title: <%= task.title %>
+          <div class="float-right">Assigned to: <%= task.user.name %></div>
+        </div>
+        <div class="card-body">Description: <%= task.body %></div>
+        <div class= "card-body">Completed: <strong><%= task.completed %></strong></div>
 
-</div>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Body</th>
-      <th>Completed</th>
-      <th>Assigned to</th>
-
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for task <- @tasks do %>
-    <tr>
-      <td><%= task.title %></td>
-      <td width="30%"><%= task.body %></td>
-      <td><%= task.completed %></td>
-      <td><%= task.user.name %> (<strong>ID:</strong> <%=task.user.id%>)</td>
-      <td class="text-right" width ="30%">
-        <span><%= link "Show", to: task_path(@conn, :show, task), class: "btn btn-default btn-xs" %></span>
-        <%= if @current_user.name == task.user.name do %>
+        <!--maybe button -->
+        </div>
+        <div class= "card-block, text-right">
+          <%= if @current_user.name == task.user.name do %>
           <span><%= link "Edit", to: task_path(@conn, :edit, task), class: "btn btn-default btn-xs" %></span>
           <span><%= link "Delete", to: task_path(@conn, :delete, task), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
-        <% end %>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 
+<% end %>
 <span><%= link "New Task", to: task_path(@conn, :new) %></span>
