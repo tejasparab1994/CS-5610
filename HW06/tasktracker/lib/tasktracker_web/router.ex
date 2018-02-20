@@ -4,23 +4,10 @@ defmodule TasktrackerWeb.Router do
   pipeline :browser do
     plug(:accepts, ["html"])
     plug(:fetch_session)
-    plug(:get_current_user)
+    plug(TasktrackerWebAdd)
     plug(:fetch_flash)
     plug(:protect_from_forgery)
     plug(:put_secure_browser_headers)
-  end
-
-  # move this somewhere: random plugs module?
-  # import the random plugs module here
-  def get_current_user(conn, params) do
-    user_id = get_session(conn, :user_id)
-
-    if user_id do
-      user = Tasktracker.Accounts.get_user!(user_id)
-      assign(conn, :current_user, user)
-    else
-      assign(conn, :current_user, nil)
-    end
   end
 
   pipeline :api do

@@ -45,5 +45,6 @@
 
   <div class="form-group">
     <%= submit "Submit", class: "btn btn-primary" %>
+    <span><%= link "Back", to: task_path(@conn, :index), class: "btn btn-secondary"%></span>
   </div>
 <% end %>
